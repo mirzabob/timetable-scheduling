@@ -26,6 +26,6 @@ class StudentGroup(models.Model):
 
 
 class Class(models.Model):
-    student_group = models.ForeignKey(StudentGroup, on_delete=models.PROTECT())
-    course = models.ForeignKey(Course, on_delete=models.PROTECT())
-    lecturers = models.ForeignKey(Lecturer, on_delete=models.PROTECT())
+    student_group = models.ForeignKey(StudentGroup, on_delete=models.PROTECT)
+    course = models.ForeignKey(Course, on_delete=models.PROTECT)
+    lecturers = models.ForeignKey(Lecturer, on_delete=models.PROTECT)
