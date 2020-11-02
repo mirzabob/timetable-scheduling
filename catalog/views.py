@@ -23,6 +23,20 @@ def get_random_lecturer(lecturers):
     return lecturers[random_pos]["name"]
 
 
+def extract_context(timeTable):
+    context = dict()
+    for x in timeTable:
+        day = x[0]
+        room = x[1]
+        timeslot = x[2]
+        group = x[3]
+        if group[0] in context:
+            context[group[0]].append([day, room, timeslot, group[1], group[2]])
+        else:
+            context[group[0]] = [[day, room, timeslot, group[1], group[2]]]
+    return context
+
+
 @csrf_exempt
 def schedule(request):
     if request.method == 'POST':
@@ -47,5 +61,7 @@ def schedule(request):
             schedule_t = Scheduler(rooms, class_groups)
             schedule_t.find_fittest()
 
-            print(schedule_t.timeTable)
+            context = extract_context(schedule_t.timeTable)
+
+            return render(request, 'timetable.html', context=context)
     return render(request, 'index.html')
