@@ -19,7 +19,7 @@
 <h2>Time Table for semester 1</h2>
 <table style="width:100%">
     <tr>
-        <th>-Day\Period</th>
+        <th>Day\Period</th>
         <th>8:00-9:00</th>
         <th>9:00-10:00</th>
         <th>10:00-11:00</th>
@@ -29,16 +29,16 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
+
     {% for i in S1 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
@@ -60,16 +60,15 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
     {% for i in S2 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
@@ -90,16 +89,15 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
     {% for i in S3 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
@@ -120,16 +118,16 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
+
     {% for i in S4 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
@@ -150,16 +148,16 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
+
     {% for i in S5 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
@@ -180,16 +178,16 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
+
     {% for i in S6 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
@@ -210,16 +208,16 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
+
     {% for i in S7 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
@@ -240,16 +238,15 @@
         <th>15:00-16:00</th>
         <th>16:00-17:00</th>
     </tr>
-    {{day=1}}
     {% for i in S8 %}
     <tr>
-      <th>{{day++}}</th>
-      {%for j in i}
-        {% if j=="0" %}
-        <td>-----</td>
-        {% else %}
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
         <td>{{j}}</td>
-        {% endif %}
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
       {% endfor %}
     </tr>
     {% endfor %}
