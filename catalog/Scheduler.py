@@ -36,7 +36,7 @@ class Scheduler:
             gene = []
             day = random.randint(0, self.no_of_days - 1)
             room = random.randint(0, self.no_of_rooms - 1)
-            timeslot = random.randint(0, self.no_of_periods)
+            timeslot = random.randint(0, self.no_of_periods - 1)
             gene.append(str(day))
             gene.append(str(room))
             gene.append(str(timeslot))
@@ -91,7 +91,7 @@ class Scheduler:
             new_gene = []
             day = random.randint(0, self.no_of_days - 1)
             room = random.randint(0, self.no_of_rooms - 1)
-            timeslot = random.randint(0, self.no_of_periods)
+            timeslot = random.randint(0, self.no_of_periods - 1)
             new_gene.append(str(day))
             new_gene.append(str(room))
             new_gene.append(str(timeslot))
