@@ -76,7 +76,6 @@ def schedule(request):
 
             schedule_t = Scheduler(rooms, class_groups)
 
-
             context = extract_context(schedule_t.timeTable)
             context = matrix_tt(context)  # sherry
             # print(context)
