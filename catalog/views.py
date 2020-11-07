@@ -59,7 +59,7 @@ def schedule(request):
                 rooms.append(classroom["name"])
 
             schedule_t = Scheduler(rooms, class_groups)
-            schedule_t.find_fittest()
+
 
             context = extract_context(schedule_t.timeTable)
 
