@@ -110,6 +110,7 @@ class Scheduler:
             day = random.randint(0, self.no_of_days - 1)
             room = random.randint(0, self.no_of_rooms - 1)
             timeslot = random.randint(0, self.no_of_periods - 1)
+
             newgene.append(str(day))
             newgene.append(str(room))
             newgene.append(str(timeslot))

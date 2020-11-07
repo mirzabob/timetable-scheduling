@@ -37,6 +37,22 @@ def extract_context(timeTable):
     return context
 
 
+def matrix_tt(context):  # sherry_fn
+    matr = dict()
+    for x in context:
+        matrix = []
+        rows, cols = (5, 8)
+        for r in range(0, rows):
+            matrix.append(["0" for c in range(0, cols)])
+        for y in context[x]:
+            day = int(y[0])
+            period = int(y[2])
+            stri = y[3] + "/" + y[4] + "(" + y[1] + ")"
+            matrix[day][period] = stri
+        matr[x] = matrix
+    return matr
+
+
 @csrf_exempt
 def schedule(request):
     if request.method == 'POST':
@@ -62,6 +78,7 @@ def schedule(request):
 
 
             context = extract_context(schedule_t.timeTable)
-
+            context = matrix_tt(context)  # sherry
+            # print(context)
             return render(request, 'timetable.html', context=context)
     return render(request, 'index.html')
