@@ -208,8 +208,8 @@ class Scheduler:
 
     def make_new_chromosome(self):
         self.population.sort(key=lambda x: self.find_soft_constrain_weight(x))
-        father = self.population[0]
-        mother = self.population[1]
+        father = copy.deepcopy(self.population[0])
+        mother = copy.deepcopy(self.population[1])
         child = self.reproduction(father, mother)
         if self.find_hard_constrain_weight(child) == 0:
             if self.find_soft_constrain_weight(self.population[-1]) > self.find_soft_constrain_weight(child):
@@ -222,8 +222,8 @@ class Scheduler:
         z = self.find_hard_constrain_weight(mother)
         a = self.find_soft_constrain_weight(mother)
         if x < z or (x == z and y < a):
-            return father
-        return mother
+            return 1
+        return 0
 
     def reproduction(self, father, mother):
 
