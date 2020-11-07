@@ -20,7 +20,7 @@ schema_lecturer = {
         "type": "object",
         "properties": {
             "name": {"type": "string"},
-            "experties": {"type": "string"},
+            "expertise": {"type": "string"},
             "max_teaching_load": {"type": "number"}
         }
     },
