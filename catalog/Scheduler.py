@@ -126,8 +126,11 @@ class Scheduler:
         cost = 0
 
         iteration = 0
+        total_iteration = 0
         chromosome = self.Generate_chromosome()
         while cost > 0:
+            if total_iteration > 5000:
+                break
             if iteration > 50:
                 iteration = 0
                 chromosome = self.Generate_chromosome()
@@ -138,6 +141,7 @@ class Scheduler:
             for gene in newGenes:
                 chromosome.append(gene)
             iteration += 1
+            total_iteration += 1
 
         return chromosome
 

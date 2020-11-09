@@ -75,6 +75,8 @@ def schedule(request):
                 rooms.append(classroom)
 
             schedule_t = Scheduler(rooms, class_groups)
+            ## if schedule_t.find_hard_constrain_weight(schedule_t.timeTable) >0 :
+            ##   could notr generate time table
 
             context = extract_context(schedule_t.timeTable)
             context = matrix_tt(context)  # sherry
