@@ -47,19 +47,18 @@ def schedule(request):
             class_groups = []
 
             for student_group in student_groups:
-                group = student_group["name"]
+                group = [student_group["name"], int(student_group["strength"])]
                 group_courses = student_group["courses"]
                 for course in group_courses:
                     random_lecturer = get_random_lecturer(lecturers)
-                    class_group = [group, course, random_lecturer, 6]
+                    class_group = [group, course, random_lecturer, 3]
                     class_groups.append(class_group)
 
             rooms = []
             for classroom in classrooms:
-                rooms.append(classroom["name"])
+                rooms.append(classroom)
 
             schedule_t = Scheduler(rooms, class_groups)
-
 
             context = extract_context(schedule_t.timeTable)
 

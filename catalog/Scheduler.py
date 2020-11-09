@@ -55,9 +55,9 @@ class Scheduler:
             day = random.randint(0, self.no_of_days - 1)
             room = random.randint(0, self.no_of_rooms - 1)
             timeslot = random.randint(0, self.no_of_periods - 1)
-            gene.append(str(day))
-            gene.append(str(room))
-            gene.append(str(timeslot))
+            gene.append(day)
+            gene.append(room)
+            gene.append(timeslot)
             gene.append(group)
             chromosome.append(gene)
 
@@ -82,6 +82,10 @@ class Scheduler:
                 room2 = chromosome[j][1]
                 teacher2 = chromosome[j][3][2]
                 group2 = chromosome[j][3][0]
+
+                if group2[1] > self.rooms["capacity"]:
+                    isclashing = True
+                    cost += 1
 
                 if day1 == day2 and timeslot1 == timeslot2:
                     if teacher1 == teacher2:
@@ -110,9 +114,9 @@ class Scheduler:
             day = random.randint(0, self.no_of_days - 1)
             room = random.randint(0, self.no_of_rooms - 1)
             timeslot = random.randint(0, self.no_of_periods - 1)
-            newgene.append(str(day))
-            newgene.append(str(room))
-            newgene.append(str(timeslot))
+            newgene.append(day)
+            newgene.append(room)
+            newgene.append(timeslot)
             newgene.append(gene[3])
             newGenes.append(newgene)
 
@@ -167,6 +171,9 @@ class Scheduler:
                 room2 = chromosome[j][1]
                 teacher2 = chromosome[j][3][2]
                 group2 = chromosome[j][3][0]
+                if group2[1] > self.rooms["capacity"]:
+                    isclashing = True
+                    cost += 1
 
                 if day1 == day2 and timeslot1 == timeslot2:
                     if teacher1 == teacher2:
