@@ -83,7 +83,7 @@ class Scheduler:
                 teacher2 = chromosome[j][3][2]
                 group2 = chromosome[j][3][0]
 
-                if group2[1] > self.rooms["capacity"]:
+                if group2[1] > self.rooms[room2]["capacity"]:
                     isclashing = True
                     cost += 1
 
@@ -175,7 +175,7 @@ class Scheduler:
                 room2 = chromosome[j][1]
                 teacher2 = chromosome[j][3][2]
                 group2 = chromosome[j][3][0]
-                if group2[1] > self.rooms["capacity"]:
+                if group2[1] > self.rooms[room2]["capacity"]:
                     cost += 1
 
                 if day1 == day2 and timeslot1 == timeslot2:
