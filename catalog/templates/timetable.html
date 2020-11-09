@@ -1,73 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;    
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>Hello World this is timetable</h1>
 <h2>Time Table for semester 1</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
+
     {% for i in S1 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
+
 <br><br><br>
 
 <h2>Time Table for semester 2</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>-Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
     {% for i in S2 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
 <br><br><br>
 
 <h2>Time Table for semester 3</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>-Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
     {% for i in S3 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
 <br><br><br>
 
 <h2>Time Table for semester 4</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>-Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
+
     {% for i in S4 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
 <br><br><br>
 
 <h2>Time Table for semester 5</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>-Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
+
     {% for i in S5 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
 <br><br><br>
 
 <h2>Time Table for semester 6</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>-Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
+
     {% for i in S6 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
 <br><br><br>
 
 <h2>Time Table for semester 7</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>-Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
+
     {% for i in S7 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
 <br><br><br>
 
 <h2>Time Table for semester 8</h2>
-<ul>
+<table style="width:100%">
+    <tr>
+        <th>-Day\Period</th>
+        <th>8:00-9:00</th>
+        <th>9:00-10:00</th>
+        <th>10:00-11:00</th>
+        <th>11:00-12:00</th>
+        <th>13:00-14:00</th>
+        <th>14:00-15:00</th>
+        <th>15:00-16:00</th>
+        <th>16:00-17:00</th>
+    </tr>
     {% for i in S8 %}
-    <li>{{ i }}</li>
+    <tr>
+      <th>Day</th>
+      {% for j in i %}
+        {% ifnotequal j "0" %}
+        <td>{{j}}</td>
+        {% else %}
+        <td>-----</td>
+        {% endifnotequal %}
+      {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+  </table>
+
 <br><br><br>
 
 
