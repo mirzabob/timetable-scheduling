@@ -29,3 +29,8 @@ class Class(models.Model):
     student_group = models.ForeignKey(StudentGroup, on_delete=models.PROTECT)
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     lecturers = models.ForeignKey(Lecturer, on_delete=models.PROTECT)
+
+
+# class Enrolled(models.Model):
+#     student_group = models.ForeignKey(StudentGroup, on_delete=models.CASCADE)
+#     course_name = models.CharField(max_length=50)

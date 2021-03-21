@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="heading">Lecturers</div>
+<form method="post" action="#">
+    {% csrf_token %}
+    {% for lecturer in lecturer_set %}
+        <div class="card">
+            <div class="tick">
+                <input type="checkbox" value="clicked" name="c{{lecturer.name}}">
+            </div>
+            <div class="details">
+                <ul>Name: {{lecturer.name}}</ul>
+                <ul>Credit: {{lecturer.expertise}}</ul>
+                <ul>Course Year: {{lecturer.max_teaching_load}}</ul>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="input">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="expertise" placeholder="Expertise">
+        <input type="text" name="max_teaching_load" placeholder="Max Teaching Load">
+        <button class="additem" type="submit" name="newItem" value="newItem">ADD</button>
+    </div>
+    <div class="delete">
+        <button class="delitem" type="submit" name="delete" value="delete">DELETE</button>
+    </div>
+
+</form>
+{% endblock %}

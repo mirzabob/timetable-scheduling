@@ -83,3 +83,96 @@ def schedule(request):
             # print(context)
             return render(request, 'timetable.html', context=context)
     return render(request, 'index.html')
+
+
+def courses(response):
+    if response.method == "POST":
+        if response.POST.get("delete"):
+            for course in Course.objects.all():
+                if response.POST.get("c" + str(course.name)) == "clicked":
+                    Course.objects.filter(name=course.name).delete()
+
+        elif response.POST.get("newItem"):
+            name = response.POST.get("name")
+            credit = response.POST.get("credit")
+            course_year = response.POST.get("course_year")
+
+            Course.objects.create(name=name, credit=credit, course_year=course_year)
+
+    course_set = Course.objects.all()
+
+    return render(response, "courses.html", {"course_set": course_set})
+
+
+def lecturers(response):
+    if response.method == "POST":
+        if response.POST.get("delete"):
+            for lecturer in Lecturer.objects.all():
+                if response.POST.get("c" + str(lecturer.name)) == "clicked":
+                    Lecturer.objects.filter(name=lecturer.name).delete()
+
+        elif response.POST.get("newItem"):
+            name = response.POST.get("name")
+            expertise = response.POST.get("expertise")
+            max_teaching_load = response.POST.get("max_teaching_load")
+
+            Lecturer.objects.create(name=name, expertise=expertise, max_teaching_load=max_teaching_load)
+
+    lecturer_set = Lecturer.objects.all()
+
+    return render(response, "lecturers.html", {"lecturer_set": lecturer_set})
+
+
+def classrooms(response):
+    if response.method == "POST":
+        if response.POST.get("delete"):
+            for classroom in Classroom.objects.all():
+                if response.POST.get("c" + str(classroom.name)) == "clicked":
+                    Classroom.objects.filter(name=classroom.name).delete()
+
+        elif response.POST.get("newItem"):
+            name = response.POST.get("name")
+            capacity = response.POST.get("capacity")
+
+            Classroom.objects.create(name=name, capacity=capacity)
+
+    classroom_set = Classroom.objects.all()
+
+    return render(response, "classrooms.html", {"classroom_set": classroom_set})
+
+
+def studentGroups(response):
+    if response.method == "POST":
+        print(response.POST)
+        if response.POST.get("delete"):
+            for studentGroup in StudentGroup.objects.all():
+                if response.POST.get("c" + str(studentGroup.name)) == "clicked":
+                    StudentGroup.objects.filter(name=studentGroup.name).delete()
+
+        elif response.POST.get("newItem"):
+            name = response.POST.get("name")
+            strength = response.POST.get("strength")
+
+            StudentGroup.objects.create(name=name, strength=strength)
+
+        # elif response.POST.get("newCourse"):
+        #     print("OK")
+        #     course = response.POST.get("course")
+        #     print(course)
+        #     for studentGroup in StudentGroup.objects.all():
+        #         if response.POST.get("c" + str(studentGroup.name)) == "newCourse":
+        #             StudentGroup.objects.filter(name=studentGroup.name).coursestaken_set.create(course_name=course)
+
+    studentGroup_set = StudentGroup.objects.all()
+
+    return render(response, "studentGroups.html", {"studentGroup_set": studentGroup_set})
+
+
+def clear(response):
+
+    Course.objects.all().delete()
+    Lecturer.objects.all().delete()
+    Classroom.objects.all().delete()
+    StudentGroup.objects.all().delete()
+
+    return render(response, "clear.html", {})
