@@ -14,7 +14,7 @@ from .Scheduler import Scheduler
 from .forms import Input
 
 # importing models
-from .models import Course, Classroom, Lecturer, Class, StudentGroup
+from .models import Course, Classroom, Lecturer, StudentGroup
 
 
 def get_random_lecturer(lecturers):
@@ -152,24 +152,23 @@ def studentGroups(response):
         elif response.POST.get("newItem"):
             name = response.POST.get("name")
             strength = response.POST.get("strength")
-
             StudentGroup.objects.create(name=name, strength=strength)
 
-        # elif response.POST.get("newCourse"):
-        #     print("OK")
-        #     course = response.POST.get("course")
-        #     print(course)
-        #     for studentGroup in StudentGroup.objects.all():
-        #         if response.POST.get("c" + str(studentGroup.name)) == "newCourse":
-        #             StudentGroup.objects.filter(name=studentGroup.name).coursestaken_set.create(course_name=course)
+        elif response.POST.get("newCourse"):
+            course = response.POST.get("course")
+            print(course)
+            for studentGroup in StudentGroup.objects.all():
+                print(studentGroup)
+                if response.POST.get('newCourse') == studentGroup.name:
+                    print(Course.objects.filter(name=course))
+                    studentGroup.courses.add(Course.objects.get(name=course))
 
-    studentGroup_set = StudentGroup.objects.all()
-
-    return render(response, "studentGroups.html", {"studentGroup_set": studentGroup_set})
+    studentGroups = StudentGroup.objects.all()
+    print(studentGroups)
+    return render(response, "studentGroups.html", {"studentGroup_set": studentGroups})
 
 
 def clear(response):
-
     Course.objects.all().delete()
     Lecturer.objects.all().delete()
     Classroom.objects.all().delete()
