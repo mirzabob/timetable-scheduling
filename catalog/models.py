@@ -23,14 +23,6 @@ class Classroom(models.Model):
 class StudentGroup(models.Model):
     name = models.CharField(max_length=20, primary_key=True)
     strength = models.IntegerField(default=0)
+    courses = models.ManyToManyField(Course, null=True)
 
 
-class Class(models.Model):
-    student_group = models.ForeignKey(StudentGroup, on_delete=models.PROTECT)
-    course = models.ForeignKey(Course, on_delete=models.PROTECT)
-    lecturers = models.ForeignKey(Lecturer, on_delete=models.PROTECT)
-
-
-# class Enrolled(models.Model):
-#     student_group = models.ForeignKey(StudentGroup, on_delete=models.CASCADE)
-#     course_name = models.CharField(max_length=50)
