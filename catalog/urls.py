@@ -6,6 +6,6 @@ urlpatterns = [
     path('lecturers/', views.lecturers, name="courses"),
     path('classrooms/', views.classrooms, name="classrooms"),
     path('studentGroups/', views.studentGroups, name="studentGroups"),
-    path('clear/', views.clear, name="clear")
-    # path('schedule/', views.schedule, name="schedule")
+    path('clear/', views.clear, name="clear"),
+    path('schedule/', views.schedule, name="schedule")
 ]
