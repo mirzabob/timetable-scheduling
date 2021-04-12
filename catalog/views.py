@@ -30,10 +30,11 @@ def extract_context(timeTable):
         room = x[1]
         timeslot = x[2]
         group = x[3]
-        if group[0] in context:
-            context[group[0]].append([day, room, timeslot, group[1], group[2]])
+        # print(group)
+        if group[0][0] in context:
+            context[group[0][0]].append([day, room, timeslot, group[1], group[2]])
         else:
-            context[group[0]] = [[day, room, timeslot, group[1], group[2]]]
+            context[group[0][0]] = [[day, room, timeslot, group[1], group[2]]]
     return context
 
 
@@ -47,7 +48,7 @@ def matrix_tt(context):  # sherry_fn
         for y in context[x]:
             day = int(y[0])
             period = int(y[2])
-            stri = y[3] + "/" + y[4] + "(" + y[1] + ")"
+            stri = y[3] + "/" + y[4] + "(" + str(y[1]) + ")"
             matrix[day][period] = stri
         matr[x] = matrix
     return matr
@@ -73,7 +74,11 @@ def schedule(request):
 
     rooms = []
     for classroom in classroom_set:
-        rooms.append(classroom)
+        cl = dict()
+        cl['name'] = classroom.name
+        cl['capacity'] = classroom.capacity
+        rooms.append(cl)
+        # rooms.append(classroom)
 
     schedule_t = Scheduler(rooms, class_groups)
     ## if schedule_t.find_hard_constrain_weight(schedule_t.timeTable) >0 :

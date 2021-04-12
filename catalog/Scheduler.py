@@ -176,6 +176,8 @@ class Scheduler:
                 room2 = chromosome[j][1]
                 teacher2 = chromosome[j][3][2]
                 group2 = chromosome[j][3][0]
+                # print(self.rooms[room2])
+                # print(group2)
                 if group2[1] > self.rooms[room2]["capacity"]:
                     cost += 1
 
@@ -212,7 +214,7 @@ class Scheduler:
 
         val = [0] * self.no_of_rooms
         for gene in chromosome:
-            val[int(gene[2])] += 1
+            val[int(gene[1])] += 1
         weight += self.w2 * self.find_var(val)
 
         return weight
