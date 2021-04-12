@@ -43,8 +43,9 @@ class Scheduler:
             groupdetail.append(classgroup[0])
             groupdetail.append(classgroup[1])
             groupdetail.append(classgroup[2])
+            # print(classgroup)
 
-            for i in range(int(classgroups[4])):
+            for i in range(int(classgroup[3])):
                 grouplist.append(groupdetail)
 
     def Generate_chromosome(self):
@@ -199,19 +200,19 @@ class Scheduler:
             val = [0] * 5
             for gene in chromosome:
                 if group == gene[3][0]:
-                    val[gene[0]] += 1
+                    val[int(gene[0])] += 1
             weight += self.w1 * self.find_var(val)
 
         for teacher in self.teacher:
             val = [0] * 5
             for gene in chromosome:
                 if teacher == gene[3][2]:
-                    val[gene[0]] += 1
+                    val[int(gene[0])] += 1
             weight += self.w2 * self.find_var(val)
 
         val = [0] * self.no_of_rooms
         for gene in chromosome:
-            val[gene[2]] += 1
+            val[int(gene[2])] += 1
         weight += self.w2 * self.find_var(val)
 
         return weight

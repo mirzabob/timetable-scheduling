@@ -155,7 +155,13 @@ def studentGroups(response):
             StudentGroup.objects.create(name=name, strength=strength)
 
         elif response.POST.get("newCourse"):
-            course = response.POST.get("course")
+            courses_input = response.POST.getlist("course")
+            print(courses_input)
+            course = ''
+            for c in courses_input:
+                if len(c):
+                    course = c
+                    break
             print(course)
             for studentGroup in StudentGroup.objects.all():
                 print(studentGroup)
