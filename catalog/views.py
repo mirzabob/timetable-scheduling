@@ -87,7 +87,7 @@ def schedule(request):
     context = extract_context(schedule_t.timeTable)
     context = matrix_tt(context)  # sherry
     # print(context)
-    return render(request, 'timetable.html', context=context)
+    return render(request, 'timetable.html', {"context": context})
 
 
 def courses(response):
