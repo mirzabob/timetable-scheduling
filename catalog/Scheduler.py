@@ -46,7 +46,7 @@ class Scheduler:
             groupdetail.append(classgroup[1])
             groupdetail.append(classgroup[2])
 
-            for i in range(int(classgroups[4])):
+            for i in range(int(classgroups[3])):
                 grouplist.append(groupdetail)
 
     def Generate_chromosome(self):  # gene=  [day,room,timeslot,group]
