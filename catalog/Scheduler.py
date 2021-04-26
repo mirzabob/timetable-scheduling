@@ -15,8 +15,10 @@ class Scheduler:
         self.no_of_periods = 8
         self.no_of_rooms = len(rooms)
         self.population = []
-        self.w1 = 1000
-        self.w2 = 100
+        self.w1 = 10
+        self.w2 = 1000
+        self.w3 = 2000
+        self.w4 = 300
         self.group = []
         self.teacher = []
         self.subject = []
@@ -43,12 +45,11 @@ class Scheduler:
             groupdetail.append(classgroup[0])
             groupdetail.append(classgroup[1])
             groupdetail.append(classgroup[2])
-            # print(classgroup)
 
-            for i in range(int(classgroup[3])):
+            for i in range(int(classgroups[4])):
                 grouplist.append(groupdetail)
 
-    def Generate_chromosome(self):
+    def Generate_chromosome(self):  # gene=  [day,room,timeslot,group]
         grouplist = self.grouplist
         chromosome = []
         for group in grouplist:
@@ -137,6 +138,8 @@ class Scheduler:
                 chromosome = self.Generate_chromosome()
             costhard, clashes = self.evaluate_hard_constraints(chromosome)
             cost = costhard
+            if cost == 0:
+                break
             newGenes = self.mutation(clashes)
 
             for gene in newGenes:
@@ -176,8 +179,6 @@ class Scheduler:
                 room2 = chromosome[j][1]
                 teacher2 = chromosome[j][3][2]
                 group2 = chromosome[j][3][0]
-                # print(self.rooms[room2])
-                # print(group2)
                 if group2[1] > self.rooms[room2]["capacity"]:
                     cost += 1
 
@@ -198,23 +199,34 @@ class Scheduler:
     def find_soft_constrain_weight(self, chromosome):
         weight = 0
 
-        for group in self.group:
+        for group in self.group:  # load balancing of classes among groups
             val = [0] * 5
             for gene in chromosome:
                 if group == gene[3][0]:
-                    val[int(gene[0])] += 1
+                    val[gene[0]] += 1
             weight += self.w1 * self.find_var(val)
 
-        for teacher in self.teacher:
+        for teacher in self.teacher:  # load balancing of classes among teaches
             val = [0] * 5
             for gene in chromosome:
                 if teacher == gene[3][2]:
-                    val[int(gene[0])] += 1
+                    val[gene[0]] += 1
             weight += self.w2 * self.find_var(val)
 
-        val = [0] * self.no_of_rooms
+        for subject in self.subject:  # load balancing of classes among subjectes
+            val = [0] * 5
+            for gene in chromosome:
+                if subject == gene[3][1]:
+                    val[gene[0]] += 1
+            weight += self.w2 * self.find_var(val)
+
+        weight += self.find_gaps(chromosome) * self.w3
+
+        weight += self.find_migration(chromosome) * self.w4
+
+        val = [0] * self.no_of_rooms  # load balancing of classes among rooms
         for gene in chromosome:
-            val[int(gene[1])] += 1
+            val[gene[1]] += 1
         weight += self.w2 * self.find_var(val)
 
         return weight
@@ -243,7 +255,7 @@ class Scheduler:
         for i in range(len(father)):
             x = random.randint(0, 1)
             if x == 1:
-                temp = copy.deepcopy(father[i])
+                temp = father[i]
                 father[i] = mother[i]
                 mother[i] = temp
 
@@ -251,3 +263,41 @@ class Scheduler:
             return father
         else:
             return mother
+
+    def find_gaps(self, chromosome):  # minimises gaps between periods
+        val = 0
+        min_array = [self.no_of_periods] * 5
+        max_array = [0] * 5
+        count = len(chromosome)
+
+        for gene in chromosome:
+            min_array[gene[0]] = min(min_array[gene[0]], gene[2])
+            max_array[gene[0]] = max(max_array[gene[0]], gene[2])
+
+        for i in range(5):
+            count -= min(0, max_array[i] - min_array[i] + 1)
+
+        return -count
+
+    def find_migration(self, chromosome):  # minimization migrtion between classroom
+        val = 0
+
+        for group in self.group:
+
+            p = [[-1] * self.no_of_periods] * 5
+            for gene in chromosome:
+                if group == gene[3][0]:
+                    p[gene[0]][gene[2]] = gene[1]
+
+            for day in p:
+                v = -1
+                for period in day:
+                    if period == -1:
+                        continue
+                    if v == -1:
+                        v = period
+                    else:
+                        val += 1
+                        v = period
+
+        return val

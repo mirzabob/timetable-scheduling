@@ -54,9 +54,30 @@ def matrix_tt(context):  # sherry_fn
     return matr
 
 
+def class_creator(student_group, lecturer_set):
+    subject_map = {}
+    lecturer_count = {}
+    for lecturer in lecturer_set:
+        lecturer_count[lecturer.name] = 0
+        for subject in lecturer.expertise.all():
+            if subject in subject_map:
+                subject_map[subject].append(lecturer.name)
+            else:
+                subject_map[subject] = [lecturer.name]
+    class_group = []
+    for group in student_group:
+        g = [student_group.name, student_group.strength]
+        for course in group.courses.all():
+            probable_lecturer = subject_map[course]
+            probable_lecturer.sort(key=lambda x: lecturer_count[x])
+            current_lecturer = probable_lecturer[0]
+            lecturer_count[current_lecturer] += 1
+            class_group.append([g, course, current_lecturer, 3])
+    return class_group
+
+
 @csrf_exempt
 def schedule(request):
-
     course_set = Course.objects.all()
     lecturer_set = Lecturer.objects.all()
     classroom_set = Classroom.objects.all()
