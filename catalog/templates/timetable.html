@@ -16,8 +16,8 @@
 </head>
 <body>
 <h1>TimeTable</h1>
-{% for k in context %}
-    <h2>Time Table for {{k}}</h2>
+{% for key, value in context.items %}
+    <h2>Time Table for {{key}}</h2>
     <table style="width:100%">
         <tr>
             <th>Day\Period</th>
@@ -31,7 +31,7 @@
             <th>16:00-17:00</th>
         </tr>
         
-        {% for i in k %}
+        {% for i in value %}
             <tr>
             <th>Day</th>
             {% for j in i %}
