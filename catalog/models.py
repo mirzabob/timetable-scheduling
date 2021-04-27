@@ -11,7 +11,7 @@ class Course(models.Model):
 
 class Lecturer(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
-    expertise = models.CharField(max_length=50)
+    expertise = models.ManyToManyField(Course, null=True)
     max_teaching_load = models.IntegerField(default=999999999)
 
 
