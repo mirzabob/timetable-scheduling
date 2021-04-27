@@ -11,14 +11,20 @@
             </div>
             <div class="details">
                 <ul>Name: {{lecturer.name}}</ul>
-                <ul>Expertise: {{lecturer.expertise}}</ul>
                 <ul>Max teaching load: {{lecturer.max_teaching_load}}</ul>
+                <ul>Expertise: [
+                    {% for course in lecturer.expertise.all %}
+                    {{course.name}},
+                    {% endfor %}
+                    ]
+                    <input type="text" name="course" placeholder="Course">
+                    <button class="additem" type="submit" name="newCourse" value = {{lecturer.name}} >Add Course</button>
+                </ul>
             </div>
         </div>
     {% endfor %}
     <div class="input">
         <input type="text" name="name" placeholder="Name">
-        <input type="text" name="expertise" placeholder="Expertise">
         <input type="text" name="max_teaching_load" placeholder="Max Teaching Load">
         <button class="additem" type="submit" name="newItem" value="newItem">ADD</button>
     </div>
