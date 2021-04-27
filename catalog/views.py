@@ -118,10 +118,23 @@ def lecturers(response):
 
         elif response.POST.get("newItem"):
             name = response.POST.get("name")
-            expertise = response.POST.get("expertise")
             max_teaching_load = response.POST.get("max_teaching_load")
+            Lecturer.objects.create(name=name, max_teaching_load=max_teaching_load)
 
-            Lecturer.objects.create(name=name, expertise=expertise, max_teaching_load=max_teaching_load)
+        elif response.POST.get("newCourse"):
+            courses_input = response.POST.getlist("course")
+            print(courses_input)
+            course = ''
+            for c in courses_input:
+                if len(c):
+                    course = c
+                    break
+            print(course)
+            for lecturer in Lecturer.objects.all():
+                print(lecturer)
+                if response.POST.get('newCourse') == lecturer.name:
+                    print(Course.objects.filter(name=course))
+                    lecturer.expertise.add(Course.objects.get(name=course))
 
     lecturer_set = Lecturer.objects.all()
 
@@ -148,7 +161,6 @@ def classrooms(response):
 
 def studentGroups(response):
     if response.method == "POST":
-        print(response.POST)
         if response.POST.get("delete"):
             for studentGroup in StudentGroup.objects.all():
                 if response.POST.get("c" + str(studentGroup.name)) == "clicked":
