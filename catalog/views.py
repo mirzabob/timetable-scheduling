@@ -17,12 +17,6 @@ from .forms import Input
 from .models import Course, Classroom, Lecturer, StudentGroup
 
 
-def get_random_lecturer(lecturer_set):
-    total_lecturer = len(lecturer_set)
-    random_pos = random.randint(0, total_lecturer - 1)
-    return lecturer_set[random_pos].name
-
-
 def extract_context(timeTable):
     context = dict()
     for x in timeTable:
@@ -54,7 +48,7 @@ def matrix_tt(context):  # sherry_fn
     return matr
 
 
-def class_creator(student_group, lecturer_set):
+def get_class_group(student_group, lecturer_set):
     subject_map = {}
     lecturer_count = {}
     for lecturer in lecturer_set:
@@ -66,13 +60,13 @@ def class_creator(student_group, lecturer_set):
                 subject_map[subject] = [lecturer.name]
     class_group = []
     for group in student_group:
-        g = [student_group.name, student_group.strength]
+        g = [group.name, group.strength]
         for course in group.courses.all():
             probable_lecturer = subject_map[course]
             probable_lecturer.sort(key=lambda x: lecturer_count[x])
             current_lecturer = probable_lecturer[0]
             lecturer_count[current_lecturer] += 1
-            class_group.append([g, course, current_lecturer, 3])
+            class_group.append([g, course.name, current_lecturer, 3])
     return class_group
 
 
@@ -83,16 +77,6 @@ def schedule(request):
     classroom_set = Classroom.objects.all()
     student_group_set = StudentGroup.objects.all()
 
-    class_groups = []
-
-    for student_group in student_group_set:
-        group = [student_group.name, student_group.strength]
-
-        for course in student_group.courses.all():
-            random_lecturer = get_random_lecturer(lecturer_set)
-            class_group = [group, course.name, random_lecturer, 3]
-            class_groups.append(class_group)
-
     rooms = []
     for classroom in classroom_set:
         cl = dict()
@@ -101,6 +85,7 @@ def schedule(request):
         rooms.append(cl)
         # rooms.append(classroom)
 
+    class_groups = get_class_group(student_group=student_group_set, lecturer_set=lecturer_set)
     schedule_t = Scheduler(rooms, class_groups)
     ## if schedule_t.find_hard_constrain_weight(schedule_t.timeTable) >0 :
     ## could not generate time table
