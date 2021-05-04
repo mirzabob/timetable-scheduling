@@ -52,14 +52,19 @@ class Scheduler:
     def Generate_chromosome(self):  # gene=  [day,room,timeslot,group]
         grouplist = self.grouplist
         chromosome = []
+        slots = []
+        for i in range(self.no_of_days):
+            for j in range(self.no_of_rooms):
+                for k in range(self.no_of_periods):
+                    slots.append([i, j, k])
         for group in grouplist:
             gene = []
-            day = random.randint(0, self.no_of_days - 1)
-            room = random.randint(0, self.no_of_rooms - 1)
-            timeslot = random.randint(0, self.no_of_periods - 1)
-            gene.append(day)
-            gene.append(room)
-            gene.append(timeslot)
+            index = random.randint(0, len(slots) - 1)
+
+            gene.append(slots[index][0])
+            gene.append(slots[index][1])
+            gene.append(slots[index][2])
+            del slots[index]
             gene.append(group)
             chromosome.append(gene)
 
@@ -232,7 +237,7 @@ class Scheduler:
         return weight
 
     def make_new_chromosome(self):
-        self.population.sort(key=lambda x: self.find_soft_constrain_weight(x))
+        self.population.sort(key=lambda x: (self.find_hard_constrain_weight(x), self.find_soft_constrain_weight(x)))
         father = copy.deepcopy(self.population[0])
         mother = copy.deepcopy(self.population[1])
         child = self.reproduction(father, mother)
