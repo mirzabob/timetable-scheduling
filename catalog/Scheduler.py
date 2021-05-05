@@ -145,9 +145,10 @@ class Scheduler:
         total_iteration = 0
         chromosome = self.Generate_chromosome()
         while cost > 0:
+            print(total_iteration)
             if total_iteration > 10000:
                 break
-            if iteration > 100:
+            if iteration > 1000:
                 iteration = 0
                 chromosome = self.Generate_chromosome()
             costhard, clashes = self.evaluate_hard_constraints(chromosome)
@@ -164,10 +165,10 @@ class Scheduler:
         return chromosome
 
     def create_population(self):
-        for i in range(10000):
+        for i in range(100):
             self.population.append(self.find_fittest())
 
-        for i in range(1000):
+        for i in range(100):
             self.make_new_chromosome()
 
     def find_var(self, val):
