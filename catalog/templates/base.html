@@ -1,0 +1,197 @@
+<html>
+<head>
+    <style type="text/css">
+
+        body {
+            margin: 0px;
+            font-family: sans-serif;
+            background: #f8f8f8;
+        }
+
+        .all {
+            width: 60%;
+            height: 100%;
+            margin: auto;
+            border-style: solid;
+            border-color: #ffd3d5;
+            border-width: 0px 2px;
+            box-shadow: 0px 0px 15px 5px #ffbfbf;
+            background-color: #fcf5f5;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 170px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .options {
+            padding-top: 30px;
+        }
+
+        .options a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ff0556;
+            display: block;
+        }
+
+        .options a:hover {
+            color: #170004;
+        }
+
+        .main {
+            margin-left: 175px;
+            padding: 0px 10px;
+            overflow-y: scroll;
+            height: inherit;
+        }
+
+        .heading {
+            font-size: 30px;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            border-style: solid;
+            border-color: #f8ebeb;
+            border-width: 2px;
+            margin-bottom: 10px;
+            box-shadow: -2px 4px 5px -5px #ffbfbf;
+            height: 10%;
+            padding: 5px;
+            width: max-content;
+        }
+
+        .card ul {
+            margin: 5px;
+            font-size: 15px;
+            font-style: italic;
+        }
+
+        .input {
+            width: 80%;
+            margin: 10px auto auto;
+        }
+
+        .delete {
+            width: 80%;
+            margin-top: 20px;
+            margin-left: 15px;
+        }
+
+        button {
+            border-color: transparent;
+            cursor: pointer;
+            font-style: italic;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .additem {
+            background: white;
+            color: black;
+            border: 2px solid #08a5d9;
+        }
+
+        .additem:hover {
+            background: #08a5d9;
+            color: #fcf5f5;
+        }
+
+        .delitem {
+            background: white;
+            color: black;
+            border: 2px solid #dd3f46;
+        }
+
+        .delitem:hover {
+            background: #dd3f46;
+            color: #fcf5f5;
+        }
+
+        .details {
+            float: left;
+            padding-right: inherit;
+        }
+
+        .tick {
+            float: left;
+            margin-left: 15px;
+            margin-top: 20px;
+        }
+
+        .choices {
+            padding-top: 78px;
+            padding-left: 32px;
+        }
+
+        .choices a {
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 15px;
+            width: 100px;
+            height: 23px;
+            text-align: center;
+            font-weight: 600;
+            line-height: 23px;
+            font-style: italic;
+        }
+
+        .schedule {
+            background: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .schedule:hover {
+            background: #4CAF50;
+            color: #fcf5f5;
+        }
+
+        .clear {
+            background: white;
+            color: black;
+            border: 2px solid #dd3f46;
+        }
+
+        .clear:hover {
+            background: #dd3f46;
+            color: #fcf5f5;
+        }
+
+    </style>
+
+    <title>
+        Timetable Scheduler
+    </title>
+</head>
+<body>
+    <div class="all">
+        <div class="sidenav">
+            <div class="options">
+                <a href="/courses">Courses</a>
+                <a href="/lecturers">Course Instructor</a>
+                <a href="/classrooms">Classrooms</a>
+                <a href="/studentGroups">Student Groups</a>
+            </div>
+            <div class="choices">
+                <a href="/schedule" class="schedule">SCHEDULE</a>
+                <a href="/clear" class="clear">CLEAR</a>
+            </div>
+        </div>
+        <div class="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

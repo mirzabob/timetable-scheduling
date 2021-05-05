@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="heading">Student Groups</div>
+<form method="post" action="#">
+    {% csrf_token %}
+    {% for studentGroup in studentGroup_set %}
+        <div class="card">
+            <div class="tick">
+                <input type="checkbox" value="clicked" name="c{{studentGroup.name}}">
+            </div>
+            <div class="details">
+                <ul>Name: {{studentGroup.name}}</ul>
+                <ul>Strength: {{studentGroup.strength}}</ul>
+                <ul>Courses: [
+                    {% for course in studentGroup.courses.all %}
+                    {{course.name}},
+                    {% endfor %}
+                    ]
+                    <input type="text" name="course" placeholder="Course">
+                    <button class="additem" type="submit" name="newCourse" value = {{studentGroup.name}} >Add Course</button>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="input">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="strength" placeholder="Strength">
+        <button class="additem" type="submit" name="newItem" value="newItem">ADD</button>
+    </div>
+    <div class="delete">
+        <button class="delitem" type="submit" name="delete" value="delete">DELETE</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="heading">Classrooms</div>
+<form method="post" action="#">
+    {% csrf_token %}
+    {% for classroom in classroom_set %}
+        <div class="card">
+            <div class="tick">
+                <input type="checkbox" value="clicked" name="c{{classroom.name}}">
+            </div>
+            <div class="details">
+                <ul>Name: {{classroom.name}}</ul>
+                <ul>Capacity: {{classroom.capacity}}</ul>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="input">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="capacity" placeholder="Capacity">
+        <button class="additem" type="submit" name="newItem" value="newItem">ADD</button>
+    </div>
+    <div class="delete">
+        <button class="delitem" type="submit" name="delete" value="delete">DELETE</button>
+    </div>
+</form>
+{% endblock %}

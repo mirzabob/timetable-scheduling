@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="heading">Courses</div>
+    <form method="post" action="#">
+        {% csrf_token %}
+        {% for course in course_set %}
+            <div class="card">
+                <div class="tick">
+                    <input type="checkbox" value="clicked" name="c{{course.name}}">
+                </div>
+                <div class="details">
+                    <ul>Name: {{course.name}}</ul>
+                    <ul>Credit: {{course.credit}}</ul>
+                    <ul>Course Year: {{course.course_year}}</ul>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="input">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="credit" placeholder="Credit">
+            <input type="text" name="course_year" placeholder="Course Year">
+            <button class="additem" type="submit" name="newItem" value="newItem">ADD</button>
+        </div>
+        <div class="delete">
+            <button class="delitem" type="submit" name="delete" value="delete">DELETE</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,48 @@
+<html>
+   <body>
+
+      <form name = "form"
+         method = "POST" >
+      {% csrf_token %}
+         <div style = "max-width:470px;">
+            <center>
+               <textarea rows="15" cols="50" placeholder="courses" name = "course" ></textarea>
+            </center>
+         </div>
+
+         <br>
+          <div style = "max-width:470px;">
+                <center>
+                   <textarea rows="15" cols="50" placeholder="lecturer" name = "lecturer" ></textarea>
+                </center>
+         </div>
+
+         <br>
+          <div style = "max-width:470px;">
+                <center>
+                   <textarea rows="15" cols="50" placeholder="classroom" name = "classroom" ></textarea>
+                </center>
+         </div>
+
+         <br>
+          <div style = "max-width:470px;">
+                <center>
+                   <textarea rows="15" cols="50" placeholder="studentgroup" name = "studentgroup" ></textarea>
+                </center>
+         </div>
+         <div style = "max-width:470px;">
+            <center>
+
+               <button style = "border:0px; background-color:#4285F4; margin-top:8%;
+                  height:35px; width:80%;margin-left:19%;" type = "submit"
+                  value = "" >
+                  <strong>SCHEDULE</strong>
+               </button>
+
+            </center>
+         </div>
+
+      </form>
+
+   </body>
+</html>
