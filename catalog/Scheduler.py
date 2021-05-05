@@ -146,7 +146,6 @@ class Scheduler:
         chromosome = self.Generate_chromosome()
         cost, val = self.evaluate_hard_constraints(chromosome)
         while cost > 0:
-            print(total_iteration)
             if total_iteration > 10000:
                 break
             if iteration > 1000:
@@ -267,8 +266,7 @@ class Scheduler:
         return 0
 
     def reproduction(self, father, mother):
-
-        for i in range(len(father)):
+        for i in range(min(len(father), len(mother))):
             x = random.randint(0, 1)
             if x == 1:
                 temp = father[i]
